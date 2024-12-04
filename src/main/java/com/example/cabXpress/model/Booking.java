@@ -1,13 +1,11 @@
 package com.example.cabXpress.model;
 
 import com.example.cabXpress.Enum.BookingStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
@@ -28,7 +26,6 @@ public class Booking {
 
     String destination;
 
-    @U
     String bookingId;
 
     @CreationTimestamp
@@ -42,4 +39,12 @@ public class Booking {
     double totalDistance;
 
     BookingStatus status;
+
+    @ManyToOne
+    @JoinColumn
+    Customer customer;
+
+    @ManyToOne
+    @JoinColumn
+    Driver driver;
 }

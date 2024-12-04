@@ -7,6 +7,8 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,4 +33,7 @@ public class Customer {
 
      @CreationTimestamp
     Date registeredOn;
+
+     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+     List<Booking> bookings = new ArrayList<>();
 }

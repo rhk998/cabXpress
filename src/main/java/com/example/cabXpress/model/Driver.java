@@ -1,11 +1,11 @@
 package com.example.cabXpress.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,6 +20,14 @@ public class Driver {
     private int id;
 
     String name;
+
     int age;
+
     long mobNo;
+
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
+    List<Booking> bookings = new ArrayList<>();
+
+    @OneToOne(mappedBy = "driver", cascade = CascadeType.ALL)
+    Cab cab;
 }
